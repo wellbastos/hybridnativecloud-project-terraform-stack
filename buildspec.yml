@@ -10,8 +10,13 @@ phases:
       - docker pull $terraformImage
       - PROJ_NAME="$PROJETCT_NAME"
       - REPOSITORY_URI="$ECR_ADDRESS"
-      - mkdir .aws && aws s3 cp s3://hackathon-fiap/instance-need/.aws/credentials .aws/ && aws s3 cp s3://hackathon-fiap/instance-need/.aws/config .aws/
-      - mkdir .ssh && aws s3 cp s3://hackathon-fiap/instance-need/.ssh/fiap-lab1.pem .ssh/ 
+      - mkdir .aws
+      - aws s3 cp s3://hackathon-fiap/instance-need/.aws/credentials .aws/
+      - aws s3 cp s3://hackathon-fiap/instance-need/.aws/config .aws/
+      - mkdir .ssh 
+      - aws s3 cp s3://hackathon-fiap/instance-need/.ssh/fiap-lab1.pem .ssh/
+      - ls -lhart .aws
+      -ls -lhart .ssh
   pre_build:
     commands:
       - login=$(aws ecr get-login --region=us-east-1)
