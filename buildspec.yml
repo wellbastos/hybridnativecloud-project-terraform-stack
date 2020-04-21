@@ -38,5 +38,5 @@ phases:
     
 artifacts:
   files: 
-    - elb.txt
-    - plan.out
+    # - elb.txt
+    # - plan.out
