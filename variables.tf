@@ -16,7 +16,7 @@ variable "KEY_NAME" {
   default = "fiap-lab"
 }
 variable "PATH_TO_KEY" {
-  default = "/app/.ssh/fiap-lab1.pem"
+  default = "/app/.ssh/fiap-lab.pem"
 }
 variable "INSTANCE_USERNAME" {
   default = "ubuntu"
