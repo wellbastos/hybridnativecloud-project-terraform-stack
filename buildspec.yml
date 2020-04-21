@@ -25,9 +25,9 @@ phases:
       - ls -lhart
       - pwd
       - ls -lhart /root/.ssh
-      - ls -lhart /home/ubuntu/.ssh
       - pwd
       - dockerterraform="docker run --rm -w /app  -v $PWD:/app -v $PWD/.aws:/root/.aws -v $PWD/.ssh:/root/.ssh -e PROJ_NAME=$PROJ_NAME $terraformImage"
+      - $dockerterraform ls
       - $dockerterraform ls /root/.ssh/
       - $dockerterraform ls /app/.ssh/
       - $dockerterraform pwd      
