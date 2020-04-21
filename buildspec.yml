@@ -23,8 +23,6 @@ phases:
   build:
     commands:
       - dockerterraform="docker run --rm -w /app  -v $PWD:/app -v $PWD/.aws:/root/.aws -v $PWD/.ssh:/root/.ssh -e PROJ_NAME=$PROJ_NAME $terraformImage"
-      - pwd
-      - ls -lhart
       - $dockerterraform init
       - $dockerterraform workspace select $STAGE || $dockerterraform workspace new $STAGE
       - $dockerterraform destroy -var ECR_REGISTRY="${REPOSITORY_URI}" -auto-approve
@@ -38,5 +36,5 @@ phases:
     
 artifacts:
   files: 
-    - elb.txt
-    - plan.out
+    - ./elb.txt
+    - ./plan.out
