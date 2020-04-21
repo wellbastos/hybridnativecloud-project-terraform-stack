@@ -12,10 +12,10 @@ phases:
       - REPOSITORY_URI="$ECR_ADDRESS"
       - pwd
       - mkdir .aws
-      - aws s3 cp s3://hackathon-fiap/instance-need/.aws/credentials ~/.aws/
+      - aws s3 cp s3://hackathon-fiap/instance-need/.aws/credentials .aws/
       - aws s3 cp s3://hackathon-fiap/instance-need/.aws/config .aws/
       - mkdir .ssh 
-      - aws s3 cp s3://hackathon-fiap/instance-need/.ssh/fiap-lab.pem ~/.ssh/
+      - aws s3 cp s3://hackathon-fiap/instance-need/.ssh/fiap-lab.pem .ssh/
       - ls -lhart .aws
       - ls -lhart .ssh
   pre_build:
