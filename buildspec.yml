@@ -22,6 +22,11 @@ phases:
       - echo $login | bash      
   build:
     commands:
+      - ls -lhart
+      - pwd
+      - ls -lhart /root/.ssh
+      - ls -lhart /home/ubuntu/.ssh
+      - pwd
       - dockerterraform="docker run --rm -w /app  -v $PWD:/app -v $PWD/.aws:/root/.aws -v $PWD/.ssh:/root/.ssh -e PROJ_NAME=$PROJ_NAME $terraformImage"
       - $dockerterraform init
       - $dockerterraform workspace select $STAGE || $dockerterraform workspace new $STAGE
