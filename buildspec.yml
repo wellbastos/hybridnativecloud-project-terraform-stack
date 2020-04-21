@@ -10,14 +10,11 @@ phases:
       - docker pull $terraformImage
       - PROJ_NAME="$PROJETCT_NAME"
       - REPOSITORY_URI="$ECR_ADDRESS"
-      - pwd
       - mkdir .aws
       - aws s3 cp s3://hackathon-fiap/instance-need/.aws/credentials .aws/
       - aws s3 cp s3://hackathon-fiap/instance-need/.aws/config .aws/
       - mkdir .ssh 
       - aws s3 cp s3://hackathon-fiap/instance-need/.ssh/fiap-lab.pem .ssh/
-      - ls -lhart .aws
-      - ls -lhart .ssh
   pre_build:
     commands:
       - login=$(aws ecr get-login --region=us-east-1)
@@ -26,12 +23,14 @@ phases:
   build:
     commands:
       - dockerterraform="docker run --rm -w /app  -v $PWD:/app -v $PWD/.aws:/root/.aws -v $PWD/.ssh:/root/.ssh -e PROJ_NAME=$PROJ_NAME $terraformImage"
-      - $dockerterraform init 
+      - pwd
+      - ls -lhart
+      - $dockerterraform init
       - $dockerterraform workspace select $STAGE || $dockerterraform workspace new $STAGE
       - $dockerterraform destroy -var ECR_REGISTRY="${REPOSITORY_URI}" -auto-approve
       - $dockerterraform plan -var ECR_REGISTRY="${REPOSITORY_URI}" -out plan.out
       - $dockerterraform apply -var ECR_REGISTRY="${REPOSITORY_URI}" -auto-approve
-      - elb=$($dockerterraform output elb_public)
+      - elb=$($dockerterraform output elb_public)SS
       - echo $elb >> elb.txt
   post_build:
     commands:
