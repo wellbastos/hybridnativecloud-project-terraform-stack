@@ -30,11 +30,13 @@ phases:
       - $dockerterraform apply -var ECR_REGISTRY="${REPOSITORY_URI}" -auto-approve
       - elb=$($dockerterraform output elb_public)
       - echo $elb >> elb.txt
+      - cat elb.txt
+      - cat plan.out
   post_build:
     commands:
       - echo "DONE!!!!"
     
 artifacts:
   files: 
-    - ./elb.txt
-    - ./plan.out
+    - elb.txt
+    - plan.out
