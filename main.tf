@@ -1,7 +1,11 @@
 # Specify the provider and access details
+
+
+
 provider "aws" {
   region = "${var.aws_region}"
 }
+
 
 data "template_file" "script" {
   template = "${file("${path.module}/script.sh.tpl")}"
