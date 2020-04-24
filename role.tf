@@ -22,7 +22,7 @@ EOF
   }
 }
 
-resource "aws_iam_instance_profile" "ecr_readOnly_profile" {
+resource "aws_iam_instance_profile" "ecr_readOnly_profile_develop" {
   name = "ecr_readOnly_profile_${terraform.workspace}"
   role = "${aws_iam_role.ecr_readOnly_role.name}"
 }
